@@ -86,6 +86,12 @@ public class Picture extends SimplePicture
     
   }
   
+  
+  
+  
+  
+  
+  
   /** Method to set the blue to 0 */
   public void zeroBlue()
   {
@@ -102,14 +108,12 @@ public class Picture extends SimplePicture
   public void zeroGreen()
   {
     Pixel[][] greenPixels = this.getPixels2D();
-    for (int row = 0; row < greenPixels[0].length; row ++)
+    for (int row = 0; row < greenPixels.length; row ++)
     {
     	for (int col = 0; col < greenPixels[0].length; col++)
         {
     		Pixel currentPixel = greenPixels[row][col];
     		currentPixel.setGreen(0);
-    		
-    		greenPixels[row][col].setGreen(0);
         }
     }
   }
@@ -123,8 +127,6 @@ public class Picture extends SimplePicture
 		  {
 			  Pixel currentPixel = redPixels[row][col];
 			  currentPixel.setRed(0);
-			  
-			  redPixels[row][col].setRed(0);
 		  }
 	  }
   }
@@ -147,6 +149,44 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     } 
+  }
+  
+  
+  public void randomColor()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] row : pixels)
+	  {
+		  for(Pixel current : row)
+		  {
+			  int randomRed = (int)(Math.random() * 256);
+			  int randomGreen = (int)(Math.random() * 256);
+			  int randomBlue = (int)(Math.random() * 256);
+			  
+			  current.setRed(randomRed);
+			  current.setGreen(randomGreen);
+			  current.setBlue(randomBlue);
+		  }
+	  }
+  }
+  
+  public void mirrorVerticalRightToLeft()
+  {
+	  Pixel [][] pixels = this.getPixels2D();
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  int width = pixels[0].length;
+	  
+	  for(int row = 0; row < pixels.length; row++)
+	  {
+		  for(int col = pixels[0].length-1; col > width / 2; col--)
+		  {
+			  rightPixel = pixels[row][col];
+			  leftPixel = pixels[row][ (width / 2) - (col - width/2 )];
+			  leftPixel.setColor(rightPixel.getColor());
+			  
+		  }
+	  }
   }
   
   /** Mirror just part of a picture of a temple */
@@ -180,6 +220,8 @@ public class Picture extends SimplePicture
     * @param startRow the start row to copy to
     * @param startCol the start col to copy to
     */
+  
+  
   public void copy(Picture fromPic, 
                  int startRow, int startCol)
   {
@@ -207,8 +249,8 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("flower2.jpg");
+    Picture flower2 = new Picture("robot.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -218,7 +260,7 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("collageClayton.jpg");
   }
   
   
@@ -254,12 +296,13 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("koala.jpg");
-    beach.explore();
-    beach.zeroBlue();
+    Picture beach = new Picture("gorge.jpg");
     beach.explore();
     beach.zeroRed();
-    beach.zeroGreen();
+    beach.explore();
+    beach.createCollage();
+    beach.explore();
+    //beach.edgeDetection(edgeDist);
   }
   
 } // this } is the end of class Picture, put all new methods before this
