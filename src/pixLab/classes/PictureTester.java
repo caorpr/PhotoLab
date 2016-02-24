@@ -18,6 +18,9 @@ public class PictureTester
     beach.explore();
   }
   
+  
+
+  
   public static void testMirrorVerticalRightToLeft()
   {
 	  Picture caterpillar = new Picture("caterpillar.jpg");
@@ -52,6 +55,15 @@ public class PictureTester
 	  randomCat.explore();
   }
   
+  public static void testRandomChange()
+  {
+	  Picture randomChange = new Picture("temple.jpg");
+	  randomChange.explore();
+	  randomChange.randomChange();
+	  randomChange.explore();
+	  
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -63,7 +75,7 @@ public class PictureTester
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("swan.jpg");
+    Picture swan = new Picture("blueMotorcycle.jpg");
     swan.edgeDetection(10);
     swan.explore();
   }
@@ -75,23 +87,24 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
-    testMirrorVerticalRightToLeft();
-    testRandomColor();
+    //testMirrorVertical();
+    //testMirrorVerticalRightToLeft();
+    //testRandomColor();
     //testMirrorTemple();
+    //testRandomChange();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    //testEdgeDetection();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

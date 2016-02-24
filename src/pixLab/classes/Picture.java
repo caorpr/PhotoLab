@@ -213,6 +213,34 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void randomChange()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  for(Pixel[] row : pixels)
+	  {
+		  for(Pixel current : row)
+		  {
+			  int randomRedScale = (int)(Math.random() * 50);
+			  int randomBlueScale = (int)(Math.random() * 50);
+			  int randomGreenScale = (int)(Math.random() * 50);
+			  int plusOrMinus = (int)(Math.random() * 2);
+			  if(plusOrMinus > 0)
+			  {
+				  current.setRed((current.getRed() + randomRedScale) % 256);
+				  current.setBlue((current.getBlue() + randomBlueScale) % 256);
+				  current.setGreen((current.getGreen() + randomGreenScale) % 256);
+			  }
+			  else
+			  {
+				  current.setRed(Math.abs((current.getRed() - randomRedScale)) %256);
+				  current.setBlue(Math.abs((current.getBlue() - randomBlueScale)) %256);
+				  current.setGreen(Math.abs((current.getGreen() - randomGreenScale)) %256);
+			  }
+			  
+		  }
+	  }
+  }
+  
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -264,6 +292,8 @@ public class Picture extends SimplePicture
   }
   
   
+
+  
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
@@ -296,13 +326,19 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("gorge.jpg");
+    Picture beach = new Picture("wall.jpg");
     beach.explore();
-    beach.zeroRed();
+    beach.zeroGreen(); //one
     beach.explore();
-    beach.createCollage();
+    beach.randomChange(); //two
     beach.explore();
-    //beach.edgeDetection(edgeDist);
+    beach.createCollage(); //three
+    beach.explore();
+    beach.zeroBlue();  //four
+    beach.explore();
+    beach.randomChange();   //Five
+    beach.explore();
+    //beach.write("Randompic.jpg");
   }
   
 } // this } is the end of class Picture, put all new methods before this
