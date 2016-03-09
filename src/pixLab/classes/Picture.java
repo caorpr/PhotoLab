@@ -338,7 +338,7 @@ public class Picture extends SimplePicture
     beach.explore();
     beach.randomChange();   //Five
     beach.explore();
-    //beach.write("Randompic.jpg");
+    beach.write("Randompic.jpg");
   }
   
 } // this } is the end of class Picture, put all new methods before this
